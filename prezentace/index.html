@@ -1,0 +1,831 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Real-time Web</title>
+
+        <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+        <meta name="author" content="Hakim El Hattab">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="css/reveal.css">
+        
+        <link rel="stylesheet" href="css/theme/night.css" id="theme">
+        <!--<link rel="stylesheet" href="css/theme/default.css" id="theme">-->
+
+        <link rel="stylesheet" href="css/custom.css">
+
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script>
+            document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+
+                <section id="clock-section">
+                    <h1>Real-time Web</h1>
+                    <!--<h3>HTML Presentations Made Easy</h3>-->
+                    <p>
+                        <a href="http://adam.horcica.cz">adam.horcica.cz</a>
+                    </p>
+                    
+                    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+                    <div id="clock">
+                        <span id="hod1"></span>:<span id="hod2"></span>:<span id="hod3"></span>
+                    </div>
+                    
+                    <script>
+
+                    (function (){
+                        
+                        var last = new Date();
+
+                        function update() 
+                        {
+                            var now = new Date();
+
+                            if (last.getSeconds() != now.getSeconds())
+                            {
+                                document.getElementById("hod1").innerHTML = num(now.getHours());
+                                document.getElementById("hod2").innerHTML = num(now.getMinutes());
+                                document.getElementById("hod3").innerHTML = num(now.getSeconds());
+                            }
+                            last = now;
+
+                            setTimeout(update, 500);
+                        }
+                        
+                        function num(n)
+                        {
+                            return (n < 10 ? "0" : "") + n;
+                        }
+
+                        update();
+
+                    })();
+
+                    </script>
+
+                </section>
+
+                <!--
+                <section>
+                    <h2>Obsah</h2>
+                    
+                    <ul>
+                        <li>Co to je...</li>
+                        <li>Ukázka</li>
+                        <li>Technologie</li>
+                        <li>Implementace</li>
+                    </ul>
+                </section>
+                -->
+
+                <section>
+                    
+                    <section>
+                        <img src="img/f5.jpg" height="480" width="640" />
+                    </section>
+
+                    <section>
+                        TODO - screen isu jak pouští proces na pozadí
+                    </section>
+                    
+                    <section>
+                        <p>
+                            <a href="http://traffic.sh.cvut.cz/" target="_blank">traffic.sh.cvut.cz</a>
+                        </p>
+                    </section>
+
+                    <section>
+                        <ul>
+                            <li>Twitter</li>
+                            <li>Facebook</li>
+                            <li>GMail</li>
+                            <li>…</li>
+                        </ul>
+                    </section>
+
+
+                </section>
+
+
+
+
+                <section>
+                    
+                    <section>
+                        <img src="img/http.jpg" height="300" width="400"/>
+                    </section>
+
+                    <section>
+                        <h2>HTTP</h2>
+                        <p>
+                            <em>Hyper Text Transfare Protocol</em>
+                        </p>
+                        <ul>
+                            <li>Protokol typu <em>Request</em> – <em>Response</em></li>
+                            <li><strong>Komunikaci vždy začíná klient</strong></li>
+                            <li>Beze stavový protokol</li>
+                    </section>
+
+                    <section>
+                        <h3>Jak to funguje...</h3>
+                        <p>
+                            <code><img class="icon" src="img/Laptop1.png" height="64" width="64"> ---  request ---> <img class="icon" src="img/server.png" height="64" width="64"></code>
+                        </p>
+<pre><code>
+GET /index.html HTTP/1.1
+Host: www.example.com
+
+
+</code></pre>
+
+                    </section>
+
+                    <section>
+                        <p>
+                            <code><img class="icon" src="img/Laptop1.png" height="64" width="64"> <---  response --- <img class="icon" src="img/server.png" height="64" width="64"></code>
+                        </p>
+<pre><code>
+HTTP/1.1 200 OK
+Date: <script>document.write((new Date()).toGMTString());</script>
+Server: Apache/2.2.16 (Debian
+Last-Modified: Fri, 01 Mar 2013 20:37:58 GMT
+Content-Length: 123
+Connection: close
+Content-Type: text/html; charset=UTF-8
+
+&lt;html&gt; … &lt;/html&gt;
+</code></pre>
+
+                    </section>
+                    
+
+                    <section>
+                        <img src="img/send.png" height="293" width="569">
+                    </section>
+
+                </section>
+                
+                <section>
+                    <h2>Technologie/techniky</h2>
+                    <ol>
+                        <li>Polling</li>
+                        <li>Long Polling</li>
+                        <li>Streaming</li>
+                        <li>WebSockets</li>
+                    </ol>
+                </section>
+
+                
+                <section data-state="alert">
+                    <h2>Java<span class="fragment">Script</span></h2>
+                    <div class="fragment">
+                        <p>
+                            The World's Most Misunderstood Programming Language
+                        </p>
+                        <br />
+                        <img src="img/java-javascript-sm.png" class="noframe" height="186" width="319">
+                        <br /><br />
+                        <blockquote cite="http://www.crockford.com/javascript/javascript.html">
+                            JavaScript is not interpreted Java! Java is interpreted Java. JavaScript is a different language.
+                        </blockquote>
+                        <p>
+                            <small>Douglas Crockford (http://www.crockford.com/javascript/javascript.html)</small>
+                        </p>
+                    </div>
+                </section>
+
+
+
+
+<!-- ======================================================================================================= -->
+<!-- 1. Polling   -->
+<!-- ======================================================================================================= -->
+
+
+
+
+                <section>
+
+                    <section>
+                        <h2><span class="number">1</span> Polling</h2>
+
+                        <p class="fragment">
+                            Periodické dotazování
+                        </p>
+                        <p class="fragment">
+                            <img src="img/f5.jpg" height="480" width="640" />
+                        </p>
+                    </section>
+
+                    <section  data-state="soothe">
+                        <h2>„Školní“ Chat</h2>
+                        <p>Ukázková aplikace</p>
+<pre><code><img class="icon" src="img/Laptop1.png" height="32" width="32">
+&lt;input type="text" id="message"&gt;
+&lt;button id="button"&gt;Send!&lt;/button&gt;
+
+&lt;div id="history"&gt;
+    &lt;!-- messages --&gt;
+&lt;/div&gt;
+
+</code></pre>
+                    </section>
+
+
+                    <section data-state="soothe">
+                        
+                        <p>Odeslání zprávy</p>
+<pre><code contenteditable><img class="icon" src="img/Laptop1.png" height="32" width="32">
+$("#button").click(function () {
+    var msg = {
+        'time': + new Date(),
+        'text': $("#message").val()
+    };
+    $.post("/send", msg);
+});
+
+</code></pre>
+                    
+                        <p>Příjem zprávy</p>
+<pre><code contenteditable><img class="icon" src="img/Laptop1.png" height="32" width="32">
+/* 
+    Some Black Magic
+    &rarr; messageReceived(…)
+*/
+
+
+function messageReceived(msg) {
+    $.…                
+}
+</code></pre>
+
+                    </section>
+
+
+                    <section>
+<pre><code contenteditable><img class="icon" src="img/Laptop1.png" height="32" width="32">
+var last = + new Date();
+
+function update() {
+    $.get("/changes", {"from": last}, function (result) {
+        if (result) {
+            buttonPressed(result);
+            last = result.serverTime;
+        }
+        setTimeout(update, 5000);
+    });
+}
+update();
+
+</code></pre>
+                    </section>
+
+                    <section>
+                        <pre>
+<code contenteditable><img class="icon" src="img/server.png" height="32" width="32">
+var express = require('express'), app = express();
+
+var lastEvent = {time: 0, msg: null};
+
+app.post('/send', function (req, res) {
+    lastEvent = {serverTime: + new Date(), 
+                 text: req.body.text, time: req.body.time };
+    res.send("ok");
+});
+
+app.get('/changes', function (req, res) {
+    res.json(lastEvent.serverTime > req.query.from 
+             ? lastEvent 
+             : null);
+});
+
+app.listen(8081);
+
+</code></pre>
+                        <p>
+                            <strong><a href="http://localhost:8081/" target="demo">Ukázka</a></strong>
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>Výhody vs. nevýhody</h3>
+                        <ul>
+                            <li class="p">Funguje v každém prohlížeči</li>
+                            <li class="m">Není opravdové „real-time“</li>
+                        </ul>
+                        <br /><br />
+                        <p>
+                            <em>Další možnosti:</em> XHR, JSONP
+                        </p>
+                    </section>
+                    </section>
+
+
+                </section>
+
+
+
+<!-- ======================================================================================================= -->
+<!-- 1. Long Polling   -->
+<!-- ======================================================================================================= -->
+
+
+
+                <section>
+
+                    <section>
+                        <h2><span class="number">2</span> Long Polling</h2>
+                        <p>
+                            Periodické dotazování, ale…
+                        </p>
+                        <div class="fragment">
+                            <p>
+                                <code><img class="icon" src="img/Laptop1.png" height="64" width="64"> --- request&nbsp; ---> <img class="icon" src="img/server.png" height="64" width="64"></code>
+                            </p>
+                            <p class="fragment">
+                                <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;•</code>
+                            </p>
+                            <p class="fragment">
+                                <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;•</code>
+                            </p>
+                            <p class="fragment">
+                                <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;•</code>
+                            </p>
+                            <p class="fragment">
+                                <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><big>!</big></strong></code>
+                            </p>
+                            <p class="fragment">
+                                <code><img class="icon" src="img/Laptop1.png" height="64" width="64"> <---  response --- <img class="icon" src="img/server.png" height="64" width="64"></code>
+                            </p>
+                        </div>
+                    </section>
+
+                    <section>
+<pre><code contenteditable><img class="icon" src="img/Laptop1.png" height="32" width="32">
+function update() {
+    $.get("/changes", {rnd: Math.random()}, function (result) {
+        if (result) {
+            buttonPressed(result);
+        }
+        setTimeout(update, 10);
+    }).fail(function () {
+        setTimeout(update, 100);
+    })
+}
+
+update();
+
+</code></pre>
+                    </section>
+
+                    <section>
+<pre><code contenteditable><img class="icon" src="img/server.png" height="32" width="32">
+var express = require('express'), app = express();
+
+var button = new (require('events').EventEmitter)();
+
+app.post('/send', function (req, res) {
+    var msg = {
+        time: req.body.time,
+        text: req.body.text
+    };
+    button.emit("click", msg);
+    res.send("ok");
+});
+
+app.get('/changes', function (req, res) 
+{
+    button.once("click", function(msg) {
+        if (res.connection.writable) {
+            res.json(msg);
+        }
+    });
+});
+
+app.listen(8082);
+</code></pre>
+                        <p>
+                            <strong><a href="http://localhost:8082/" target="demo">Ukázka</a></strong>
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>Výhody vs. nevýhody</h3>
+                        <ul>
+                            <li class="p">Malá latence</li>
+                            <li class="m">HTTP doporučuje 2 spojení na doménu</li>
+                            <li class="m">Každý <del>pes</del> prohlížeč jiná ves</li>
+                            
+                        </ul>
+
+                        <br /><br />
+                        <p>
+                            <em>Další možnosti:</em> XHR, JSONP, Comet
+                        </p>
+                    </section>
+    
+
+                </section>
+
+
+
+<!-- ======================================================================================================= -->
+<!-- 3. Streaming   -->
+<!-- ======================================================================================================= -->
+
+
+
+                <section>
+                    
+                    <section>
+                        <h2><span class="number">3</span> Streaming</h2>
+                        <p>
+                            Nešlo by to jen s jedním spojením?
+                        </p>
+                    </section>
+
+                    <section data-state="soothe">
+                        <h2>Hádanka</h2>
+                        <p>
+                            Co to je?
+                        </p>
+                        <br />
+                        <audio controls>
+                            <source src="files/Dial_up_modem_noises.ogg" type="audio/ogg">
+                            Your browser does not support the audio element.
+                        </audio>
+                        <br /><br />
+                        <p class="fragment">
+                            <a href="http://localhost/modem.php" target="demo2">Ukázka</a>
+                        </p>
+                    </section>
+                    
+                    <section>
+<pre><code contenteditable><img class="icon" src="img/Laptop1.png" height="32" width="32">
+$(document).load(function () {
+    $("<strong>&lt;iframe&gt;</strong>")
+        .attr("src", "/changes")
+        .css("display", "none")
+        .appendTo("body");
+});
+
+</code></pre>
+                    </section>
+
+                    <section>
+<pre><code contenteditable class="javascript"><img class="icon" src="img/server.png" height="32" width="32">
+app.get('/changes', function (req, res) 
+{
+    res.writeHead(200, {
+        'Content-Type': 'text/html',
+    });
+
+    res.write("&lt;!DOCTYPE html&gt;\n");
+    res.write("&lt;html&gt;&lt;head&gt;\n");
+    res.write("&lt;title&gt;Hidden Frame&lt;/title&gt;\n");
+    res.write("&lt;/head&gt;&lt;body&gt;\n");
+    
+    button.on("click", function(msg) {
+        if (res.connection.writable) {
+            var js = "parent.buttonPressed("+JSON.stringify(msg)+")";
+            res.write("&lt;script&gt;" + js + "&lt;/script&gt;&lt;br&gt;\n");
+            res.write((new Array(1000).join(" ")) + "\n");
+        }
+    });
+
+});
+
+</code></pre>
+                        <p>
+                            <strong><a href="http://localhost:8083/" target="demo">Ukázka</a></strong>
+                        </p>
+                    </section>
+                    
+                    <section>
+                        <h3>Výhody vs. nevýhody</h3>
+                        <ul>
+                            <li class="p">Malá latence</li>
+                            <li class="m">Problém s vyrovnávací pamětí prohlížeče</li>
+                            <li class="m">HTTP doporučuje 2 spojení na doménu</li>
+                            <li class="m">Každý <del>pes</del> prohlížeč jiná ves</li>
+                        </ul>
+                        <br /><br />
+                        <p>
+                            <em>Další možnosti:</em> Flash XMLRequest, XHR Streaming, BOSH, <strong>Server-Sent Events</strong>
+                        </p>
+                    </section>
+                    </section>
+
+
+                </section>
+      
+
+
+
+
+<!-- ======================================================================================================= -->
+<!-- 4. WebSockets   -->
+<!-- ======================================================================================================= -->
+
+
+
+                <section>
+                    
+                    <section>
+                        <h2><span class="number">4</span> Web Socket</h2>
+                        <p>
+                            Nešlo by to obousměrně?
+                        </p>
+                    </section>
+
+                    <section>
+                        <p>
+                            <code><img class="icon" src="img/Laptop1.png" height="64" width="64"> ---  request ---> <img class="icon" src="img/server.png" height="64" width="64"></code>
+                        </p>
+<pre><code>
+GET /chat HTTP/1.1
+<strong>Upgrade: websocket
+Connection: Upgrade</strong>
+Sec-WebSocket-Key: x3...JH==
+Sec-WebSocket-Protocol: chat
+Sec-WebSocket-Version:  13
+
+
+</code></pre>
+                    </section>
+
+                    <section>
+                        <p>
+                            <code><img class="icon" src="img/Laptop1.png" height="64" width="64"> <---  response --- <img class="icon" src="img/server.png" height="64" width="64"></code>
+                        </p>
+<pre><code>
+HTTP/1.1 <strong>101 Switching Protocols</strong>
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Accept: HSm…GWk=
+Sec-WebSocket-Protocol: chat
+
+
+</code></pre>
+                        <p>
+                            <code><img class="icon" src="img/Laptop1.png" height="64" width="64"> <--- message ---> <img class="icon" src="img/server.png" height="64" width="64"></code>
+                        </p>
+
+                    </section>
+
+                    <section>
+<pre><code contenteditable class="javascript"><img class="icon" src="img/Laptop1.png" height="32" width="32">
+var ws = new WebSocket("ws://" + location.host);
+
+$("#button").click(function () {
+    var data = {
+        'time': + new Date(),
+        'text': $("#message").val()
+    };
+    ws.send(JSON.stringify(data));
+});
+
+ws.onmessage = function (event) {
+    var msg = JSON.parse(event.data);
+    buttonPressed(msg);
+}
+
+</code></pre>
+                    </section>
+
+                    <section>
+<pre><code contenteditable class="javascript"><img class="icon" src="img/server.png" height="32" width="32">
+var express = require('express'), app = express(),
+    ws = require('websocket.io'),
+    http = app.listen(8084),
+    server = ws.attach(http);
+
+var button = new (require('events').EventEmitter)();
+
+server.on('connection', function (socket) {
+
+    var handler = function (msg) {
+        socket.send(msg);
+    };
+
+    button.on("click", handler);
+
+    socket.on("message", function (msg) {
+        button.emit("click", msg);
+    });
+
+    socket.on("close", function () {
+        button.removeListener("click", handler);
+    });
+
+});
+
+</code></pre>
+                        <p>
+                            <strong><a href="http://localhost:8084/" target="demo">Ukázka</a></strong>
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>Výhody vs. nevýhody</h3>
+                        <ul>
+                            <li class="p">Technologie navržená pro tyto účely</li>
+                            <li class="m">Pouze v moderních prohlížečích</li>
+                        </ul>
+                    </section>
+
+                </section>
+
+    
+
+<!-- ======================================================================================================= -->
+<!-- Next   -->
+<!-- ======================================================================================================= -->
+
+                <section>
+                    <h2>Závěr</h2>
+                    <ol>
+                        <li>
+                            Pokud můžete, použijte WebSocket
+                        </li>
+                        <li>
+                            Pokud nemůžete, použijte specializovanou knihovnu
+                        </li>
+                        <li>
+                            Nebo použijte SaaS
+                        </li>
+                    </ol>
+                </section>
+
+
+
+<!-- ======================================================================================================= -->
+<!-- 5. Socket.IO   -->
+<!-- ======================================================================================================= -->
+
+                <section>
+                    
+                    <section>
+                        <h2>Knihovny</h2>
+                        <ul>
+                            <li>Automatický výběr nejlepší komunikační metody</li>
+                            <li>Skupiny, broadcast, priorita, potvrzování</li>
+                            <li>Zabezpečení, session</li>
+                            <li>Fronty (redis)</li>
+                        </ul>
+                        <br /><br />
+                        <p>
+                            Např. Socket.IO, Faye, SignaR, …
+                        </p>
+                    </section>
+                    
+
+                    <section>
+                        <h3>Socket.IO</h3>
+<pre><code contenteditable class="javascript"><img class="icon" src="img/Laptop1.png" height="32" width="32">
+&lt;script src="/socket.io/socket.io.js"&gt;&lt;/script&gt;
+
+</code></pre>
+
+<pre><code contenteditable class="javascript"><img class="icon" src="img/Laptop1.png" height="32" width="32">
+var socket = io.connect('http://' + location.host);
+
+$("#button").click(function () {
+    var data = {
+        'time': + new Date(),
+        'text': $("#message").val()
+    };
+    socket.emit('msg', data);
+});
+
+socket.on("show", buttonPressed);
+
+</code></pre>
+                    </section>
+
+                    <section>
+<pre><code contenteditable class="javascript"><img class="icon" src="img/server.png" height="32" width="32">
+var express = require('express'), app = express(),
+    http = app.listen(8085),
+    io = require("socket.io").listen(http);
+
+io.sockets.on('connection', function (socket) {
+    socket.on('msg', function (msg) {
+        io.sockets.emit("show", msg);
+    });
+});
+
+</code></pre>
+                        <p>
+                            <strong><a href="http://localhost:8085/" target="demo">Ukázka</a></strong>
+                        </p>
+                    </section>
+
+                </section>
+
+                <section>
+                    <section>
+                        <h2>SaaS</h2>
+                        <ul>
+                            <li>Pokud nemáme vlastní server</li>
+                            <li>Nebo používáme technologii, která neumožňuje dlouho otevřené spojení (např. PHP)</li>
+                        </ul>
+                        <br /><br />
+                        <p>
+                            Např. <a href="http://pusher.com" target="_blank">pusher.com</a>, Google Channel API, ...
+                        </p>
+                    </section>
+                </section>
+
+
+<!-- ======================================================================================================= -->
+<!-- Examples   -->
+<!-- ======================================================================================================= -->
+
+
+                <section>
+                    
+                </section>
+            
+
+
+<!-- ======================================================================================================= -->
+<!-- The END   -->
+<!-- ======================================================================================================= -->
+
+
+                <!--
+                <section>
+                    <h2>Stellar Links</h2>
+                    <ul>
+                        <li><a href="https://github.com/hakimel/reveal.js">Source code on GitHub</a></li>
+                        <li><a href="http://hakim.se/projects/reveal-js">Leave feedback on my site</a></li>
+                        <li><a href="http://twitter.com/hakimel">Follow me on Twitter</a></li>
+                    </ul>
+                </section>
+                -->
+
+                <section>
+                    <h1>?</h1>
+                    
+                </section>
+
+            </div>
+
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.min.js"></script>
+
+        <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                    // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,128 @@
+body {
+	-webkit-perspective: 1000px;
+    -webkit-transform-style: preserve-3d;
+}
+
+h2 span.number{
+
+	font-family: Consolas, 'Lucida Console', 'Monaco CE', fixed, monospace;
+	font-size: 55%;
+	position: relative;
+	top: -9px;
+
+	background-color: #fff;
+	color: #000;
+
+	padding: 0 15px;
+	margin-right: 20px;
+
+
+	-webkit-border-radius: 15px;
+
+}
+
+
+p.code {
+	white-space: pre;
+	font-family: Consolas, 'Lucida Console', 'Monaco CE', fixed, monospace;
+	text-align: left;
+	margin: 0 auto;
+}
+
+img.noframe {
+	background: none !important;
+  	border: none !important;
+  	box-shadow: none !important;
+}
+
+img.icon {
+	background: none !important;
+  	border: none !important;
+  	box-shadow: none !important;
+  	vertical-align: middle;
+  	padding: 0 20px;
+}
+
+
+pre code {
+	font-size: 120% !important;
+	padding: 10px !important;
+	background-color: #222 !important;
+}
+
+
+pre code img.icon {
+	float: right;
+	position: relative;
+	top: -10px;
+	right: -10px;
+}
+
+li.p, li.m{
+	list-style: none;
+	margin: 10px 0;
+}
+
+li.p {
+	color: #A6F16C;
+}
+
+li.p:before {
+	content: '+';
+	margin-right: 20px; 
+	font-weight: bold;
+	font-size: 110%;
+}
+
+li.m {
+	color: #FD7279;
+}
+
+li.m:before {
+	content: '–';
+	margin-right: 20px; 
+	font-weight: bold;
+	font-size: 110%;
+}
+
+
+#clock-section {
+	position: relative;
+
+}
+
+#clock{
+    font-size: 150px;
+    font-family: Calibri, sans-serif;
+    /*font-family: Consolas, 'Lucida Console', 'Monaco CE', fixed, monospace;*/
+    /*font-weight: bold;*/
+    
+    padding: 1px 10px;
+    color: #222;
+
+    /*text-shadow: 2px 2px 80px #f3d7ac;*/
+
+    position: absolute;
+    bottom: 0px;
+    right: -50px;
+
+    -webkit-transform: translateZ(-300px) rotateX(10deg) rotateY(-20deg) rotateZ(10deg);
+
+    -webkit-animation: rotate-clock ease-in-out 10s infinite alternate;
+}
+
+@-webkit-keyframes rotate-clock
+{
+    from
+    {
+        -webkit-transform: translateZ(-350px) translateX(0px) rotateX(10deg) rotateY(-20deg) rotateZ(8deg);
+        color: #666;
+    }
+    to
+    {
+        -webkit-transform: translateZ(-200px) translateX(-5px) rotateX(16deg) rotateY(-15deg) rotateZ(12deg);
+        color: #aaa;
+        font-weight: bold;
+    }
+}
+
